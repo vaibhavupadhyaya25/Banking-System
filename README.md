@@ -1,2 +1,2 @@
 # Banking-System
-A go-pg based banking system
+Banking system on go-pg
