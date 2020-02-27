@@ -16,7 +16,7 @@ func (pi *AccountDetail) Save(db *pg.DB) error {
 	log.Printf("AccountDetail %s inserted successfully.\n", pi.AccountNumber)
 	return nil
 }
-func (pi *AccountDetail) Read(db *pg.DB) AccountDetail {
+func (pi *AccountDetail) Readaccount(db *pg.DB) AccountDetail {
 	var item AccountDetail
 	getErr := db.Model(&item).Where("account = ?0", pi.AccountNumber).Select()
 	if getErr != nil {

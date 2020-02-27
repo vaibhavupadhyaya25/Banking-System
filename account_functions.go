@@ -13,11 +13,11 @@ func Create(dbRef *pg.DB, res db.AccountDetail) {
 	res.Save(dbRef)
 }
 
-func Read(dbRef *pg.DB, accnum int) db.AccountDetail {
+func ReadAccount(dbRef *pg.DB, accnum int) db.AccountDetail {
 	newAD1 := &db.AccountDetail{
 		AccountNumber: accnum,
 	}
-	item := newAD1.Read(dbRef)
+	item := newAD1.Readaccount(dbRef)
 	return item
 }
 

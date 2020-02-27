@@ -21,7 +21,7 @@ func (s *AccountService) Readaccount(accnum int) interface{} {
 	pgdb := db.Connect()
 	//Read(pgdb, accnum)
 	var account db.AccountDetail
-	account = Read(pgdb, accnum)
+	account = ReadAccount(pgdb, accnum)
 	bs, err := json.Marshal(account)
 	if err != nil {
 		return err
