@@ -134,7 +134,7 @@ func (t *Transaction) CheckIfExist(db *pg.DB) (string, bool) {
 	var out []Transaction
 	err := db.Model(&out).Where("acc_from = ?0", t.AccFrom).Select()
 	if err != nil {
-		return "could not fetxh data form database", false
+		return "could not fetch data form database", false
 	}
 	if len(out) == 0 {
 		return "Account number not found", false

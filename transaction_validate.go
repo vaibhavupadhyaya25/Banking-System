@@ -23,6 +23,9 @@ func ExtractData(res map[string]string) (db.Transaction, bool, string) {
 	if err3 != nil {
 		return data, false, "invalid amount"
 	}
+	if val3 <= 0 {
+		return data, false, "amount should be more than zero"
+	}
 	data.Amount = val3
 	data.Type = res["type"]
 	return data, true, "Everything is fine."
@@ -66,6 +69,9 @@ func DetailsValidate(accNo int) (string, bool) {
 	dbref := db.Connect()
 	if dbref == nil {
 		return "Can not connect to database.", false
+	}
+	if accNo <= 0 {
+		return "Invalind account number", false
 	}
 	det := &db.Transaction{
 		AccFrom: accNo,
