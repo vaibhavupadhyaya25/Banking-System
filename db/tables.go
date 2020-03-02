@@ -14,6 +14,7 @@ const (
 type AccountDetail struct {
 	RefPointer    int       `pg:"-"`
 	tableName     struct{}  `pg:"account_collection"`
+	Cid           int       `pg:"cid"`
 	AccountNumber int       `pg:"account,pk"`
 	AccountType   string    `pg:"type"`
 	Balance       int       `pg:"balance"`
@@ -25,7 +26,6 @@ type AccountDetail struct {
 type BankDetail struct {
 	RefPointer    int       `pg:"-"`
 	tableName     struct{}  `pg:"bank_collection"`
-	Cid           int       `pg:"cid"`
 	AccountNumber int       `pg:"account,pk"`
 	Ifsc          int       `pg:"ifsc"`
 	CreatedAt     time.Time `"pg:created_at"`
@@ -43,7 +43,7 @@ type Transaction struct {
 type Customerinfo struct {
 	RefPointer int       `pg:"-"`
 	tableName  struct{}  `pg:"customer"`
-	Cid        int       `pg:"id, pk`
+	Cid        int       `pg:"id, pk, serial`
 	Fname      string    `pg:"fname, unique"`
 	Lname      string    `pg:"lname"`
 	Address    string    `pg:"address`
@@ -53,3 +53,15 @@ type Customerinfo struct {
 	UpdatedAt  time.Time `pg:"updated_at"`
 	IsActive   bool      `pg:"is_active"`
 }
+
+// {
+// 	"RefPointer": 0,
+// 	"Cid": 0,
+// 	"AccountNumber": 123456789,
+// 	"AccountType": "savings",
+// 	"Balance": 1200,
+// 	"Interest": 4,
+// 	"CreatedAt": "2020-02-29T14:02:18.068022512+05:30",
+// 	"UpdatedAt": "2020-02-29T14:02:18.068022653+05:30",
+// 	"IsActive": true
+//   }

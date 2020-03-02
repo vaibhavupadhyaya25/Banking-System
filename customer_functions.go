@@ -12,7 +12,11 @@ func del(dbRef *pg.DB, cid int) {
 	new1 := &db.Customerinfo{
 		Cid: cid,
 	}
+	var ab db.AccountDetail
+	dbRef.Model(&ab).Column("account").Where("cid = ?0", new1.Cid).Select()
+
 	new1.DeleteRecord(dbRef)
+	Delete(dbRef, ab.AccountNumber)
 }
 
 func updfname(dbRef *pg.DB, res db.Customerinfo) {

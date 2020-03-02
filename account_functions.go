@@ -39,6 +39,8 @@ func PostValidate(res map[string]string) interface{} {
 	if err1 != nil {
 		return "Invalid Account Number"
 	}
+
+	abc.Cid, _ = strconv.Atoi(res["Cid"])
 	abc.AccountNumber = val1
 	val2, err2 := strconv.Atoi(res["Balance"])
 	if err2 != nil {
