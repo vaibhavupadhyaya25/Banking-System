@@ -51,6 +51,7 @@ func (pi *AccountDetail) Update(db *pg.DB) error {
 	return nil
 }
 
+//Delete ....
 func (pi *AccountDetail) Delete(db *pg.DB) error {
 	_, deleteErr := db.Model(pi).Where("account = ?account").Delete()
 	if deleteErr != nil {

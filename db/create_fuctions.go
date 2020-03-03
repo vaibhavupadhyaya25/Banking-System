@@ -19,18 +19,6 @@ func CreateAccountDetailsTable(db *pg.DB) error {
 	log.Printf("Table AccountDetails created successfully.\n")
 	return nil
 }
-func CreateBankDetailsTable(db *pg.DB) error {
-	opts := &orm.CreateTableOptions{
-		IfNotExists: true,
-	}
-	createErr := db.CreateTable(&BankDetail{}, opts)
-	if createErr != nil {
-		log.Printf("Error while creating table BankDetails, Reason: %v\n", createErr)
-		return createErr
-	}
-	log.Printf("Table AccountDetails created successfully.\n")
-	return nil
-}
 
 func CreateTableTransaction(db *pg.DB) error {
 

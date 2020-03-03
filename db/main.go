@@ -21,10 +21,7 @@ func Connect() *pg.DB {
 		os.Exit(100)
 	}
 	log.Printf("Connected Succesfully \n")
-	CreateAccountDetailsTable(db)
-	CreateBankDetailsTable(db)
-	CreateTableTransaction(db)
-	CreateCustomerTable(db)
+
 	return db
 
 }
