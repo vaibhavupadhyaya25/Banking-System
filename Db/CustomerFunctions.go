@@ -1,10 +1,9 @@
-package db
+package Db
 
 import (
 	"log"
 
 	pg "github.com/go-pg/pg"
-	orm "github.com/go-pg/pg/orm"
 )
 
 //to update the key or something else
@@ -98,39 +97,5 @@ func (pi *Customerinfo) Save(db *pg.DB) error {
 		return insertErr
 	}
 	log.Printf("Customer details %s inserted successfully \n", pi.Cid)
-	return nil
-}
-
-// func (pi *ProductItem) SaveMultiple(db *pg.DB, items []*ProductItem) error {
-// 	_, insertErr := db.Model(items[0], items[1]).Insert()
-// 	if insertErr != nil {
-// 		log.Printf("Error while bulk inserting, resons: %v\n", insertErr)
-// 		return insertErr
-// 	}
-// 	log.Printf("Bulk insert successful")
-// 	return nil
-// }
-
-// func (pi *Customerinfo) Adding(db *pg.DB) (*Customerinfo, error) {
-// 	InsertResult, insertErr := db.Model(pi).Returning("*").Insert()
-// 	if insertErr != nil {
-// 		log.Printf("Error while adding customer, Reason: %v\n", insertErr)
-// 		return nil, insertErr
-// 	}
-// 	log.Printf("Customer Inserted Successfully \n")
-// 	log.Printf("Customer details added to the bank %v\n", InsertResult)
-// 	return pi, nil
-// }
-
-func CreateCustomerTable(db *pg.DB) error {
-	opts := &orm.CreateTableOptions{
-		IfNotExists: true,
-	}
-	createErr := db.CreateTable(&Customerinfo{}, opts)
-	if createErr != nil {
-		log.Printf("Error while creating tableItems, Reason: %v\n, createErr")
-		return createErr
-	}
-	log.Printf("Customer Table is created\n")
 	return nil
 }
