@@ -4,6 +4,6 @@ package db
 func CreateTables() {
 	d := Connect()
 	CreateAccountDetailsTable(d)
-	CreateTableTransaction(d)
-	CreateCustomerTable(d)
+	//CreateTableTransaction(d)
+	//CreateCustomerTable(d)
 }
