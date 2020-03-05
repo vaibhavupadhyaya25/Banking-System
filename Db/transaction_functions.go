@@ -38,7 +38,7 @@ func (t *Transaction) DoTransaction(db *pg.DB) (string, bool) {
 		if err1 != nil {
 			return "something went wrong", false
 		}
-		_, updateErr3 := tx.Model(&temp1).Set("balance = ?0,updated_at = ?1 ", temp1.Balance-int(t.Amount), time.Now()).Where("account = ?0", t.AccFrom).Update()
+		_, updateErr3 := tx.Model(&temp1).Set("balance = ?0,updated_at = ?1 ", temp1.Balance-t.Amount, time.Now()).Where("account = ?0", t.AccFrom).Update()
 		if updateErr3 != nil {
 			tx.Rollback()
 			return "Cannot debit balance", false
@@ -48,7 +48,7 @@ func (t *Transaction) DoTransaction(db *pg.DB) (string, bool) {
 		if err2 != nil {
 			return "something went wrong", false
 		}
-		_, updateErr4 := tx.Model(&temp2).Set("balance = ?0,updated_at = ?1 ", temp2.Balance+int(t.Amount), time.Now()).Where("account = ?0", t.AccTo).Update()
+		_, updateErr4 := tx.Model(&temp2).Set("balance = ?0,updated_at = ?1 ", temp2.Balance+t.Amount, time.Now()).Where("account = ?0", t.AccTo).Update()
 		if updateErr4 != nil {
 			tx.Rollback()
 			fmt.Println(updateErr4)
@@ -83,7 +83,7 @@ func (t *Transaction) DoTransaction(db *pg.DB) (string, bool) {
 		if err1 != nil {
 			return "something went wrong", false
 		}
-		_, updateErr3 := tx.Model(&temp1).Set("balance = ?0,updated_at = ?1 ", temp1.Balance+int(t.Amount), time.Now()).Where("account = ?0", t.AccFrom).Update()
+		_, updateErr3 := tx.Model(&temp1).Set("balance = ?0,updated_at = ?1 ", temp1.Balance+t.Amount, time.Now()).Where("account = ?0", t.AccFrom).Update()
 		if updateErr3 != nil {
 			tx.Rollback()
 			return "Cannot credit balance", false
@@ -93,7 +93,7 @@ func (t *Transaction) DoTransaction(db *pg.DB) (string, bool) {
 		if err2 != nil {
 			return "something went wrong", false
 		}
-		_, updateErr4 := tx.Model(&temp2).Set("balance = ?0,updated_at = ?1 ", temp2.Balance-int(t.Amount), time.Now()).Where("account = ?0", t.AccTo).Update()
+		_, updateErr4 := tx.Model(&temp2).Set("balance = ?0,updated_at = ?1 ", temp2.Balance-t.Amount, time.Now()).Where("account = ?0", t.AccTo).Update()
 		if updateErr4 != nil {
 			tx.Rollback()
 			return "Cannot debit balance", false

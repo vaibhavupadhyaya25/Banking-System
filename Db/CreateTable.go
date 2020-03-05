@@ -4,4 +4,5 @@ package db
 func CreateTables() {
 	d := Connect()
 	CreateTableTransaction(d)
+	CreateAccountDetailsTable(d)
 }

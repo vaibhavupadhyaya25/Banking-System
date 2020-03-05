@@ -5,8 +5,7 @@ import (
 
 	tr "github.com/code/Banking-System/Transaction"
 
-	db "github.com/code/Banking-System/Db"
-
+	ac "github.com/code/Banking-System/Account"
 	"github.com/rightjoin/fuel"
 )
 
@@ -15,8 +14,9 @@ func main() {
 	log.Println("Welcome to Pooraa Banking")
 	server := fuel.NewServer()
 	server.AddService(&tr.TransactionService{})
+	server.AddService(&ac.AccountService{})
 
-	db.CreateTables()
+	// db.CreateTables()
 
 	server.Run()
 }
