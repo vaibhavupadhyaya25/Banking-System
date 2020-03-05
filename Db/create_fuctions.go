@@ -30,3 +30,15 @@ func CreateAccountDetailsTable(db *pg.DB) error {
 	log.Printf("Table AccountDetails created successfully.\n")
 	return nil
 }
+func CreateCustomerTable(db *pg.DB) error {
+	opts := &orm.CreateTableOptions{
+		IfNotExists: true,
+	}
+	createErr := db.CreateTable(&Customerinfo{}, opts)
+	if createErr != nil {
+		log.Printf("Error while creating tableItems, Reason: %v\n, createErr")
+		return createErr
+	}
+	log.Printf("Customer Table is created\n")
+	return nil
+}
